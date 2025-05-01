@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqok0sy61y73"]
+
+[ext_resource type="Script" uid="uid://cs676lhctxan2" path="res://gun.gd" id="1_vk1bi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vk1bi"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Gun" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_vk1bi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vk1bi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="Trigger" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 0)
+
+[node name="Grip" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+
+[node name="Muzzle" type="Marker3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)

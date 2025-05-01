@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dngjqsrbranas"]
+
+[ext_resource type="Shader" uid="uid://d1dhlk36km21r" path="res://bullet_hole.gdshader" id="1_guucc"]
+[ext_resource type="Script" uid="uid://b7hphbcewcehk" path="res://bullet_hole.gd" id="1_iisxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iisxy"]
+render_priority = 0
+shader = ExtResource("1_guucc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_guucc"]
+material = SubResource("ShaderMaterial_iisxy")
+
+[node name="bullet_hole" type="Node3D"]
+script = ExtResource("1_iisxy")
+
+[node name="Decal" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 0, -0.01)
+mesh = SubResource("QuadMesh_guucc")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

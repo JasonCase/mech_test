@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtueygcbgysdf"]
+
+[ext_resource type="Script" uid="uid://bidyyobjqjtq0" path="res://light_body.gd" id="1_28eko"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_howl6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spoqt"]
+emission_enabled = true
+emission = Color(1, 0.876094, 0.717822, 1)
+emission_energy_multiplier = 1.66
+emission_on_uv2 = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_28eko"]
+material = SubResource("StandardMaterial3D_spoqt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_howl6"]
+albedo_color = Color(0.0904823, 0.0904823, 0.0904823, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_li50n"]
+material = SubResource("StandardMaterial3D_howl6")
+
+[node name="LightBlock" type="Node3D"]
+
+[node name="LightBody" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_28eko")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightBody"]
+shape = SubResource("BoxShape3D_howl6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightBody/CollisionShape3D"]
+layers = 2
+mesh = SubResource("BoxMesh_28eko")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="LightBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+light_energy = 3.101
+shadow_enabled = true
+
+[node name="LightFixture" type="StaticBody3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.2, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightFixture"]
+shape = SubResource("BoxShape3D_howl6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LightFixture/CollisionShape3D"]
+layers = 2
+mesh = SubResource("BoxMesh_li50n")
