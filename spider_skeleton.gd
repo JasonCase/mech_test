@@ -1,5 +1,3 @@
-@tool
-
 extends Skeleton3D
 
 

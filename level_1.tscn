@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6rkpjeiffu6y"]
+[gd_scene load_steps=13 format=3 uid="uid://b6rkpjeiffu6y"]
 
 [ext_resource type="PackedScene" uid="uid://liiwn12u28ek" path="res://floor.tscn" id="1_hbghi"]
 [ext_resource type="Script" uid="uid://dkbr35np5w0q" path="res://level_1.gd" id="1_rka8t"]
@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://dbs0obrepcpq2" path="res://wall.tscn" id="7_j7kpp"]
 [ext_resource type="PackedScene" uid="uid://dtueygcbgysdf" path="res://LightBlock.tscn" id="8_bjebc"]
 [ext_resource type="PackedScene" uid="uid://bpk7yk1iivwer" path="res://M4.tscn" id="9_5rr72"]
-[ext_resource type="PackedScene" uid="uid://bmd7f7cnoul7i" path="res://AUG.tscn" id="11_1pe0h"]
-[ext_resource type="PackedScene" uid="uid://byr2wad2bmmm7" path="res://spider_bot.tscn" id="12_27bay"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rka8t"]
 shader = ExtResource("3_ihfcg")
@@ -148,27 +146,16 @@ transform = Transform3D(-1.13133e-08, 4.2222e-08, -1, 0.965926, 0.258819, 0, 0.2
 [node name="LightBlock8" parent="Lights" instance=ExtResource("8_bjebc")]
 transform = Transform3D(-1.13133e-08, 4.2222e-08, -1, -0.965926, 0.258819, 2.18557e-08, 0.258819, 0.965926, 3.78552e-08, 3, 1, 12)
 
-[node name="spider_bot_model" parent="Lights" instance=ExtResource("12_27bay")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
-
 [node name="Guns" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 1.5, 10.5)
 
-[node name="AK" parent="Guns" instance=ExtResource("5_gyffv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, -2.38419e-07, -5.9)
+[node name="M4" parent="." instance=ExtResource("9_5rr72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.2, 4.7)
+VEL = 500
+RATE = 950.0
 
-[node name="AUG" parent="Guns" instance=ExtResource("11_1pe0h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0, -6.1)
-
-[node name="M4" parent="Guns" instance=ExtResource("9_5rr72")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
-
-[node name="AK2" parent="Guns" instance=ExtResource("5_gyffv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -2.38419e-07, 0.0999994)
-
-[node name="AUG2" parent="Guns" instance=ExtResource("11_1pe0h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, -0.1)
-
-[node name="M5" parent="Guns" instance=ExtResource("9_5rr72")]
+[node name="AK" parent="." instance=ExtResource("5_gyffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, 4.7)
+RATE = 600.0
 
 [connection signal="fired" from="Player" to="." method="_on_player_fired"]

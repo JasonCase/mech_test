@@ -1,5 +1,3 @@
-@tool
-
 extends Node3D
 
 @export var BR: Marker3D
@@ -12,6 +10,8 @@ extends Node3D
 @export var FRT: Marker3D
 @export var FLT: Marker3D
 
+@onready var hb: CollisionShape3D = $CollisionShape3D
+
 var tdist: float = 3.
 
 func _ready() -> void:
@@ -23,8 +23,8 @@ func dist(point_a: Marker3D,point_b: Marker3D) -> float:
 	return distance
 	
 func _physics_process(_delta: float) -> void:
-	if position.y <= 1.5:
-		position.y = 1.5
+	#if hb.global_position.y <=3:
+	#	hb.global_position.y = 3
 		
 	if dist(BR,BRT) >= tdist:
 		BR.global_position = BRT.global_position

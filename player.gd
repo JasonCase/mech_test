@@ -7,7 +7,7 @@ class_name Player extends CharacterBody3D
 @onready var RHand: SkeletonIK3D = $CharacterArmature/Skeleton3D/RHand
 @onready var ray: RayCast3D = $CharacterArmature/Skeleton3D/BoneAttachment3D2/RayCast3D
 
-signal fired(bullet: Bullet)
+signal fired(projectile: Projectile)
 
 const JUMP_VELOCITY: float = 4.5
 
@@ -17,7 +17,10 @@ var xrot: float = 0.0
 var yrot: float = 0.0
 var max_angle: float = 70.0
 
+var shoot_allowed: bool = true
 var interacting: bool = false
+
+var last_hit_object: Object
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -55,8 +58,8 @@ func drop_gun() -> void:
 	gun.linear_velocity = velocity
 	gun.equipped = false
 
-func _on_fired(bullet: Bullet) -> void:
-	fired.emit(bullet)
+func _on_fired(projectile: Projectile) -> void:
+	fired.emit(projectile)
 
 func camera_control(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -106,7 +109,7 @@ func animate() -> void:
 		else:
 			animation_tree.set("parameters/Blend2 2/blend_amount",0)
 
-func handle_input(event) -> void:
+func handle_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("ui_cancel"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -132,13 +135,25 @@ func handle_input(event) -> void:
 			$SpringArm3D.spring_length = 2
 			$AnimationTree.set("parameters/Blend2 3/blend_amount",0)
 
-func check_interact() -> void:
-	if ray.is_colliding():
-		var hit_object: Object = ray.get_collider()
+func trigger_held(allowed: bool) -> bool:
+	return true if Input.is_action_pressed("Left_Click") and allowed else false
+
+func check_interact(hit_object: Object) -> void:
 		if hit_object.has_method("interact"):
 			hit_object.interact(interacting,self)
-			if hit_object.get("looking") != null:
-				hit_object.looking = true
+
+func check_looking() -> void:
+	var hit_object: Object = ray.get_collider()
+	if ray.is_colliding():
+		if hit_object.get("looked_at") != null and hit_object != last_hit_object:
+			hit_object.looked_at = true
+		check_interact(hit_object)
+		
+	if last_hit_object:
+		if last_hit_object != hit_object and last_hit_object.get("looked_at") != null:
+			last_hit_object.looked_at = false
+		
+	last_hit_object = hit_object
 
 func _unhandled_input(event: InputEvent) -> void:
 	camera_control(event)
@@ -148,11 +163,13 @@ func _process(_delta: float) -> void:
 	rotation.y = xrot
 	($SpringArm3D as SpringArm3D).rotation.x = yrot
 	($TorsoPivot as Node3D).rotation.x = -yrot
+	
 
 func _physics_process(delta: float) -> void:
 	hand_IK(delta)
 	move(delta)
 	animate()
-	check_interact()
-
+	check_looking()
+	if gun_is_equipped():
+		get_held_gun().trigger_held = trigger_held(shoot_allowed)
 	move_and_slide()

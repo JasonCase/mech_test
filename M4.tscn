@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://bpk7yk1iivwer"]
+[gd_scene load_steps=9 format=4 uid="uid://bpk7yk1iivwer"]
 
 [ext_resource type="PackedScene" uid="uid://uqok0sy61y73" path="res://gun.tscn" id="1_cvugk"]
+[ext_resource type="PackedScene" uid="uid://cbjq3rdjyvfey" path="res://bullet.tscn" id="2_bl6j5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvugk"]
 size = Vector3(0.035, 0.185, 0.84)
@@ -103,7 +104,9 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_231rk")
 
 [node name="M4" instance=ExtResource("1_cvugk")]
+projectile_scene = ExtResource("2_bl6j5")
 VEL = 200
+RATE = 1500.0
 
 [node name="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0559993, -0.440775)

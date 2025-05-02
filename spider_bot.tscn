@@ -375,7 +375,7 @@ bones/22/scale = Vector3(0.325856, 0.325856, 0.325856)
 script = ExtResource("2_ewgy7")
 
 [node name="Body_2" type="BoneAttachment3D" parent="CollisionShape3D/Armature/Skeleton3D"]
-transform = Transform3D(0.325737, 0.00391675, 0.00789106, -0.00401002, 0.325809, 0.00381437, -0.00784407, -0.00391009, 0.325738, 0, 0.325856, 0)
+transform = Transform3D(0.325856, 0, 0, 0, 0.325856, 0, 0, 0, 0.325856, 0, 0.325856, 0)
 bone_name = "Body_2"
 bone_idx = 21
 
@@ -385,7 +385,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_hu1we")
 
 [node name="Cylinder" type="BoneAttachment3D" parent="CollisionShape3D/Armature/Skeleton3D"]
-transform = Transform3D(0.325737, 0.00789106, -0.00391675, -0.00401002, 0.00381437, -0.325809, -0.00784407, 0.325738, 0.00391009, -0.00722925, 0.422775, -0.349752)
+transform = Transform3D(0.325856, 0, 0, 0, 0, -0.325856, 0, 0.325856, 0, 0, 0.426871, -0.348666)
 bone_name = "Cylinder"
 bone_idx = 22
 

@@ -1,6 +1,6 @@
-class_name Bullet extends Node3D
+class_name Projectile extends Node3D
 
-var bh_scene: PackedScene= preload("res://bullet_hole.tscn")
+@export var bh_scene: PackedScene= preload("res://bullet_hole.tscn")
 
 @onready var ray: RayCast3D = $RayCast3D
 
