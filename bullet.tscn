@@ -12,7 +12,6 @@ material = SubResource("StandardMaterial3D_v7oki")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 script = ExtResource("2_v8qja")
 spd = 200
-force = 50.0
 
 [node name="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("BoxMesh_v8qja")

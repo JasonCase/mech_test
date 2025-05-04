@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcebas2fk6gpl"]
 
-[ext_resource type="Script" uid="uid://gt338n472m4t" path="res://basic_hit_logic_test.gd" id="1_pqpfa"]
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://hit_reciever.tscn" id="1_pqpfa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t7yxk"]
 
@@ -12,11 +12,12 @@ material = SubResource("ShaderMaterial_2hw4o")
 [node name="rigid_box" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 3
-mass = 50.0
-script = ExtResource("1_pqpfa")
+mass = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_t7yxk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("BoxMesh_34jcy")
+
+[node name="HitReciever" parent="." instance=ExtResource("1_pqpfa")]

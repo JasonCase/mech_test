@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://8e03rb06co7"]
+[gd_scene load_steps=7 format=3 uid="uid://8e03rb06co7"]
 
 [ext_resource type="PackedScene" uid="uid://b5rtw8khdcfsf" path="res://projectile.tscn" id="1_fj03e"]
 [ext_resource type="Script" uid="uid://cet8hlag77jdm" path="res://rocket.gd" id="2_5gt1y"]
+[ext_resource type="PackedScene" uid="uid://cdhdlp2l7e3us" path="res://explosion.tscn" id="3_r2l15"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5gt1y"]
 
@@ -11,6 +12,7 @@
 
 [node name="Rocket" instance=ExtResource("1_fj03e")]
 script = ExtResource("2_5gt1y")
+explosion_scene = ExtResource("3_r2l15")
 spd = 50
 spawns_decal = false
 force = 1000.0

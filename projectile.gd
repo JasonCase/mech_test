@@ -23,13 +23,15 @@ func hit() -> void:
 	
 	position = col_p
 	if hit_object:
-		if hit_object.has_method("get_hit"):
-			on_hit(hit_object,col_p,col_n,force)
+		var HitReciever: Node3D = hit_object.get_node_or_null("HitReciever")
+		if HitReciever:
+			HitReciever.take_hit(-transform.basis.z.normalized(),col_p,force)
 	
+	on_hit(hit_object,col_p,col_n)
 	queue_free()
 
-func on_hit(hit_object,col_p,col_n,force) -> void:
-	hit_object.get_hit(-transform.basis.z.normalized(),col_p,force)
+func on_hit(hit_object,col_p,col_n) -> void:
+	#hit_object.get_hit(-transform.basis.z.normalized(),col_p,force)
 	if spawns_decal:
 		spawn_decal(hit_object,col_p,col_n)
 

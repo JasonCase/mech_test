@@ -150,15 +150,18 @@ transform = Transform3D(-1.13133e-08, 4.2222e-08, -1, -0.965926, 0.258819, 2.185
 [node name="Guns" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 1.5, 10.5)
 
-[node name="M4" parent="." instance=ExtResource("9_5rr72")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.2, 4.7)
-RATE = 950.0
+[node name="M4" parent="Guns" instance=ExtResource("9_5rr72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.20567, 0, -5.80598)
+mass = 1.0
+RATE = 900.0
 
-[node name="AK" parent="." instance=ExtResource("5_gyffv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, 4.7)
+[node name="AK" parent="Guns" instance=ExtResource("5_gyffv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.70827, 0, -5.98536)
+mass = 1.0
 RATE = 600.0
 
-[node name="Launcher" parent="." instance=ExtResource("11_1pe0h")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.4, 1.1, 3.8)
+[node name="Launcher" parent="Guns" instance=ExtResource("11_1pe0h")]
+transform = Transform3D(0.669131, 0, -0.743145, 0, 1, 0, 0.743145, 0, 0.669131, -6.43376, -0.15127, -7.13367)
+mass = 1.0
 
 [connection signal="fired" from="Player" to="." method="_on_player_fired"]

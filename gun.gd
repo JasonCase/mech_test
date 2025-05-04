@@ -28,10 +28,6 @@ signal fired(projectile)
 func is_equipped() -> bool:
 	return true if get_parent() is Marker3D else false
 
-func get_hit(n: Vector3,p: Vector3, f: float) -> void:
-	p = to_local(p)
-	apply_impulse(n*f,p)
-
 func interact(interacting: bool,player_node: Player) -> void:
 	if interacting:
 		if player_node.shoulder_mount.get_child_count() == 0 and !is_equipped():

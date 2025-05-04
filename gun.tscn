@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://uqok0sy61y73"]
+[gd_scene load_steps=4 format=3 uid="uid://uqok0sy61y73"]
 
 [ext_resource type="Script" uid="uid://cs676lhctxan2" path="res://gun.gd" id="1_vk1bi"]
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://hit_reciever.tscn" id="2_dk5gl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vk1bi"]
 size = Vector3(0.1, 0.1, 0.1)
@@ -8,6 +9,7 @@ size = Vector3(0.1, 0.1, 0.1)
 [node name="Gun" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 6
+mass = 4.0
 script = ExtResource("1_vk1bi")
 RATE = 500.0
 
@@ -24,3 +26,5 @@ transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 
 
 [node name="Muzzle" type="Marker3D" parent="MeshInstance3D"]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
+
+[node name="HitReciever" parent="." instance=ExtResource("2_dk5gl")]

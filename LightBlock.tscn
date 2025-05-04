@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtueygcbgysdf"]
+[gd_scene load_steps=8 format=3 uid="uid://dtueygcbgysdf"]
 
 [ext_resource type="Script" uid="uid://bidyyobjqjtq0" path="res://light_body.gd" id="1_28eko"]
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://hit_reciever.tscn" id="2_li50n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_howl6"]
 
@@ -37,6 +38,8 @@ mesh = SubResource("BoxMesh_28eko")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 light_energy = 3.101
 shadow_enabled = true
+
+[node name="HitReciever" parent="LightBody" instance=ExtResource("2_li50n")]
 
 [node name="LightFixture" type="StaticBody3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.2, 0)

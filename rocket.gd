@@ -1,6 +1,7 @@
 extends Projectile
 
 @onready var collision_box: Area3D = $Area3D
+@export var explosion_scene: PackedScene = preload("res://explosion.tscn")
 
 var target: Marker3D
 var turn_speed: float = 10
@@ -18,6 +19,11 @@ func calculate_ray_target(delta: float) -> void:
 		
 	ray.target_position.y = ray_length
 
+func on_hit(hit_object,col_p,col_n) -> void:
+	super.on_hit(hit_object,col_p,col_n)
+	var explosion: Node3D = explosion_scene.instantiate()
+	explosion.position = global_position
+	add_child(explosion)
 
 func set_fired_from(from: Node3D):
 	super.set_fired_from(from)
