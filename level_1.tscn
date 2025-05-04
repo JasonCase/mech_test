@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6rkpjeiffu6y"]
+[gd_scene load_steps=14 format=3 uid="uid://b6rkpjeiffu6y"]
 
 [ext_resource type="PackedScene" uid="uid://liiwn12u28ek" path="res://floor.tscn" id="1_hbghi"]
 [ext_resource type="Script" uid="uid://dkbr35np5w0q" path="res://level_1.gd" id="1_rka8t"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dbs0obrepcpq2" path="res://wall.tscn" id="7_j7kpp"]
 [ext_resource type="PackedScene" uid="uid://dtueygcbgysdf" path="res://LightBlock.tscn" id="8_bjebc"]
 [ext_resource type="PackedScene" uid="uid://bpk7yk1iivwer" path="res://M4.tscn" id="9_5rr72"]
+[ext_resource type="PackedScene" uid="uid://3nabxdyut7ne" path="res://launcher.tscn" id="11_1pe0h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rka8t"]
 shader = ExtResource("3_ihfcg")
@@ -151,11 +152,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 1.5, 10.5)
 
 [node name="M4" parent="." instance=ExtResource("9_5rr72")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.2, 4.7)
-VEL = 500
 RATE = 950.0
 
 [node name="AK" parent="." instance=ExtResource("5_gyffv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, 4.7)
 RATE = 600.0
+
+[node name="Launcher" parent="." instance=ExtResource("11_1pe0h")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -3.4, 1.1, 3.8)
 
 [connection signal="fired" from="Player" to="." method="_on_player_fired"]

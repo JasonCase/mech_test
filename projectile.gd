@@ -1,33 +1,53 @@
 class_name Projectile extends Node3D
 
 @export var bh_scene: PackedScene= preload("res://bullet_hole.tscn")
-
+ 
 @onready var ray: RayCast3D = $RayCast3D
 
-var spd: int
+@export var spd: int = 100
+@export var spawns_decal: bool = true
+@export var force: float = 5
 
+var fired_from: Node3D
+
+func spawn_decal(surface: Object, col_p, col_n) -> void:
+	var bh: Node3D = bh_scene.instantiate()
+	surface.add_child(bh)
+	bh.global_transform.origin = col_p
+	bh.look_at(col_p+col_n+Vector3(0.001,0.001,0.001),Vector3.UP)
+	
 func hit() -> void:
 	var col_p: Vector3 = ray.get_collision_point()
 	var col_n: Vector3 = ray.get_collision_normal()
-	var bh: Node3D = bh_scene.instantiate()
 	var hit_object: Object = ray.get_collider()
-	hit_object.add_child(bh)
-	bh.global_transform.origin = col_p
-	bh.look_at(col_p+col_n+Vector3(0.001,0.001,0.001),Vector3.UP)
-	position = col_p
 	
-	if hit_object.has_method("get_hit"):
-		hit_object.get_hit(transform.basis.y.normalized(),col_p)
+	position = col_p
+	if hit_object:
+		if hit_object.has_method("get_hit"):
+			on_hit(hit_object,col_p,col_n,force)
 	
 	queue_free()
-		
 
-func _physics_process(delta: float):
-	var ray_length: float = spd * delta * 1
-	ray.target_position.y = ray_length
+func on_hit(hit_object,col_p,col_n,force) -> void:
+	hit_object.get_hit(-transform.basis.z.normalized(),col_p,force)
+	if spawns_decal:
+		spawn_decal(hit_object,col_p,col_n)
+
+func update_projectile(delta: float) -> void:
+	calculate_ray_target(delta)
 	ray.force_raycast_update()
 	
 	if ray.is_colliding():
 		hit()
 	else:
-		position += transform.basis.y * spd * delta
+		position += -transform.basis.z * spd * delta
+
+func set_fired_from(from: Node3D) -> void:
+	fired_from = from
+
+func calculate_ray_target(delta) -> void:
+	var ray_length: float = spd * delta * 1
+	ray.target_position.z = -ray_length
+	
+func _physics_process(delta: float):
+	update_projectile(delta)

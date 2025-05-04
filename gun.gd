@@ -5,7 +5,6 @@ class_name Gun extends RigidBody3D
 @onready var oscale = $MeshInstance3D.scale
 @onready var smod = oscale * Vector3(1.2,1.2,1.2)
 
-@export var VEL: int = 100
 @export var DMG: int = 5
 @export var RATE: float = 180
 var shooting_cooldown: float
@@ -29,9 +28,9 @@ signal fired(projectile)
 func is_equipped() -> bool:
 	return true if get_parent() is Marker3D else false
 
-func get_hit(n: Vector3,p: Vector3) -> void:
+func get_hit(n: Vector3,p: Vector3, f: float) -> void:
 	p = to_local(p)
-	apply_impulse(n*5,p)
+	apply_impulse(n*f,p)
 
 func interact(interacting: bool,player_node: Player) -> void:
 	if interacting:
@@ -47,16 +46,17 @@ func looking():
 func shoot() -> void:
 	if shooting_cooldown > 0 or !trigger_held: return
 
-	var projectile = projectile_scene.instantiate()
+	var projectile: Projectile = projectile_scene.instantiate()
 	var b_scale = projectile.scale
 	shooting = true
-	projectile.spd = VEL
 	projectile.transform = muzzle.global_transform
 	projectile.scale = b_scale
+	projectile.set_fired_from(self)
 	
 	fired.emit(projectile)
 	
 	shooting_cooldown = 60 / RATE 
+
 
 func _process(delta: float) -> void:
 

@@ -1,6 +1,6 @@
 class_name LightBody extends StaticBody3D
 
-func get_hit(_a,_b) -> void:
+func get_hit(_a,_b,_f) -> void:
 	if !has_node("SpotLight3D"): return
 	var light: SpotLight3D = $SpotLight3D
 	var cover: MeshInstance3D = $CollisionShape3D/MeshInstance3D

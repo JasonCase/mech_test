@@ -105,7 +105,6 @@ shadow_mesh = SubResource("ArrayMesh_231rk")
 
 [node name="M4" instance=ExtResource("1_cvugk")]
 projectile_scene = ExtResource("2_bl6j5")
-VEL = 200
 RATE = 1500.0
 
 [node name="CollisionShape3D" parent="." index="0"]
@@ -118,9 +117,11 @@ mesh = SubResource("ArrayMesh_cvugk")
 
 [node name="Trigger" parent="MeshInstance3D" index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, -1.77636e-15, 1, 0, 1, 1.77636e-15, -4.37114e-08, 0, -0.00529726, -0.00275775)
+visible = false
 
 [node name="Grip" parent="MeshInstance3D" index="1"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.00813302, -9.69853e-11)
+visible = false
 
 [node name="Muzzle" parent="MeshInstance3D" index="2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 1.77636e-15, 1, 0, -1, 1.77636e-15, -4.37114e-08, 0, 0.0227571, 0.000755694)
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0.0227571, 0.000755694)

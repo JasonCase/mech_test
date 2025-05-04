@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbjq3rdjyvfey"]
+[gd_scene load_steps=5 format=3 uid="uid://cbjq3rdjyvfey"]
 
 [ext_resource type="PackedScene" uid="uid://b5rtw8khdcfsf" path="res://projectile.tscn" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://dnlb7ookpyf73" path="res://bullet.gd" id="2_v8qja"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7oki"]
 
@@ -8,6 +9,14 @@
 material = SubResource("StandardMaterial3D_v7oki")
 
 [node name="Node3D" instance=ExtResource("1_v7oki")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("2_v8qja")
+spd = 200
+force = 50.0
 
 [node name="MeshInstance3D" parent="." index="0"]
 mesh = SubResource("BoxMesh_v8qja")
+
+[node name="RayCast3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, 1)

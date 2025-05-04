@@ -7,6 +7,8 @@ class_name Player extends CharacterBody3D
 @onready var RHand: SkeletonIK3D = $CharacterArmature/Skeleton3D/RHand
 @onready var ray: RayCast3D = $CharacterArmature/Skeleton3D/BoneAttachment3D2/RayCast3D
 
+@onready var camera: Camera3D = $SpringArm3D/Camera3D
+
 signal fired(projectile: Projectile)
 
 const JUMP_VELOCITY: float = 4.5
@@ -54,6 +56,7 @@ func equip_gun(gun: Gun) -> void:
 
 func drop_gun() -> void:
 	var gun: Gun = get_held_gun()
+	if !gun: return
 	gun.reparent(get_parent())
 	gun.linear_velocity = velocity
 	gun.equipped = false
@@ -131,9 +134,11 @@ func handle_input(event: InputEvent) -> void:
 		if event.is_action_pressed("Right_Click"):
 			$SpringArm3D.spring_length = 0.3
 			$AnimationTree.set("parameters/Blend2 3/blend_amount",1)
+
 		elif event.is_action_released("Right_Click"):
 			$SpringArm3D.spring_length = 2
 			$AnimationTree.set("parameters/Blend2 3/blend_amount",0)
+
 
 func trigger_held(allowed: bool) -> bool:
 	return true if Input.is_action_pressed("Left_Click") and allowed else false
