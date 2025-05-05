@@ -22,17 +22,18 @@ func calculate_ray_target(delta: float) -> void:
 func on_hit(hit_object,col_p,col_n) -> void:
 	super.on_hit(hit_object,col_p,col_n)
 	var explosion: Node3D = explosion_scene.instantiate()
-	explosion.position = global_position
 	add_child(explosion)
+	explosion.global_position = global_position
 
 func set_fired_from(from: Node3D):
 	super.set_fired_from(from)
 	if fired_from != null and fired_from.has_node("Laser/LaserDesignator"):
 		target = fired_from.get_node("Laser/LaserDesignator")
-		print(target)
 	else:
 		target = null
 
 func _process(delta: float) -> void:
-	#if len(collision_box.get_overlapping_bodies()) != 0: hit()
+
 	update_projectile(delta)
+	
+	

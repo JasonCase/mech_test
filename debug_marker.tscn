@@ -3,10 +3,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6u11"]
 albedo_color = Color(1, 0, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_582yx"]
+[sub_resource type="BoxMesh" id="BoxMesh_s6u11"]
 material = SubResource("StandardMaterial3D_s6u11")
-radius = 0.1
-height = 0.2
 
 [node name="DebugMarker" type="MeshInstance3D"]
-mesh = SubResource("SphereMesh_582yx")
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("BoxMesh_s6u11")
