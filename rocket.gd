@@ -1,15 +1,14 @@
 extends Projectile
 
-@onready var collision_box: Area3D = $Area3D
 @export var explosion_scene: PackedScene = preload("res://explosion.tscn")
 
 var target: Marker3D
-var turn_speed: float = 10
+@export var turn_speed: float = 1
 var rot: Vector3 = Vector3()
 
 
 func calculate_ray_target(delta: float) -> void:
-	var ray_length: float = spd * delta
+	var ray_length: float = spd * delta * 2
 	if target:
 		var target_direction: Vector3 = (target.global_position - global_position).normalized()
 		var current_direction: Vector3 = -transform.basis.z.normalized()
@@ -21,9 +20,12 @@ func calculate_ray_target(delta: float) -> void:
 
 func on_hit(hit_object,col_p,col_n) -> void:
 	super.on_hit(hit_object,col_p,col_n)
-	var explosion: Node3D = explosion_scene.instantiate()
+	var explosion: Explosion = explosion_scene.instantiate()
 	add_child(explosion)
-	explosion.global_position = global_position
+	explosion.global_position = $Warhead.global_position
+	#explosion.call_deferred("generate_explosion")
+	
+	explosion.generate_explosion()
 
 func set_fired_from(from: Node3D):
 	super.set_fired_from(from)
@@ -33,7 +35,8 @@ func set_fired_from(from: Node3D):
 		target = null
 
 func _process(delta: float) -> void:
-
+	#$Camera3D.current = true
 	update_projectile(delta)
+	
 	
 	

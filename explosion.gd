@@ -1,4 +1,4 @@
-extends Node3D
+class_name Explosion extends Node3D
 
 @export var debug_scene = preload("res://debug_marker.tscn")
 @export var explosion_radius: float = 10
@@ -27,7 +27,7 @@ func process_rays(coordinates: Array) -> Array:
 	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 	for coord in coordinates:
 		coord *= explosion_radius
-		var query = PhysicsRayQueryParameters3D.create(global_position,coord)
+		var query = PhysicsRayQueryParameters3D.create(global_position,global_position + coord)
 		query.hit_back_faces = false
 		var collision = space.intersect_ray(query)
 		
@@ -55,7 +55,6 @@ func draw_debug(collisions: Array) -> void:
 		add_child(debug_hit)
 		debug_hit.global_position = collision.position
 		debug_hit.reparent(get_parent().get_parent())
-		
 
 func generate_impulse(collisions: Array) -> void:
 	for collision in collisions:
@@ -68,10 +67,11 @@ func generate_impulse(collisions: Array) -> void:
 			collider.apply_impulse(direction * force / distance, pos)
 			
 
-func _ready() -> void:
+func generate_explosion() -> void:
 	var coords: Array = generate_coordinates(ray_count)
 	var collisions: Array = process_rays(coords)
 	generate_impulse(collisions)
 	draw_debug(collisions)
 	queue_free()
+
 	

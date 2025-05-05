@@ -2,7 +2,7 @@ extends Gun
 
 @onready var laser: RayCast3D = $Laser
 @onready var laser_designator: Marker3D = $Laser/LaserDesignator
-@export var laser_range: float = 100
+@export var laser_range: float = 500
 
 
 
