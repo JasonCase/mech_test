@@ -1,0 +1,46 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://drqmx66lomvci"
+path="res://.godot/imported/Character.gltf-7a5f96cedb9c0b6670c94c1973aa27a8.scn"
+
+[deps]
+
+source_file="res://ASSETS/Character/Character.gltf"
+dest_files=["res://.godot/imported/Character.gltf-7a5f96cedb9c0b6670c94c1973aa27a8.scn"]
+
+[params]
+
+nodes/root_type="CharacterBody3D"
+nodes/root_name="Player"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"nodes": {
+"PATH:CharacterArmature/Skeleton3D/Cube_007": {
+"import/skip_import": true
+},
+"PATH:CharacterArmature/Skeleton3D/Sword": {
+"import/skip_import": true
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

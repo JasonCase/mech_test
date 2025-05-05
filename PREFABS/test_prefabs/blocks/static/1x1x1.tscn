@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://byedex87hcjkl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bdfhy"]
+load_path = "res://.godot/imported/texture_09.png-596859c5091ab4e8c4ef5a0831d9711c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8moon"]
+albedo_texture = SubResource("CompressedTexture2D_bdfhy")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4vq85"]
+material = SubResource("StandardMaterial3D_8moon")
+
+[node name="1x1x1" type="CSGMesh3D"]
+use_collision = true
+collision_layer = 2
+collision_mask = 7
+mesh = SubResource("BoxMesh_4vq85")

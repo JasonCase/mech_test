@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bon8fa1r3d25c"]
+
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://TOOLS/components/hit_reciever/hit_reciever.tscn" id="1_qmgxt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1no1"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7p36j"]
+load_path = "res://.godot/imported/texture_10.png-bb17c01436b0bdbf10e3f8b17a059468.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2wes"]
+albedo_color = Color(0.783523, 0.783523, 0.783523, 1)
+albedo_texture = SubResource("CompressedTexture2D_7p36j")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_twmd2"]
+material = SubResource("StandardMaterial3D_g2wes")
+
+[node name="rigid_2x1x1" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
+mass = 20.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m1no1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_twmd2")
+
+[node name="HitReciever" parent="." instance=ExtResource("1_qmgxt")]

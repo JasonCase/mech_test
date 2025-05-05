@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxxg6iik8i826"]
+
+[ext_resource type="Texture2D" uid="uid://dro7bjybudu2e" path="res://ASSETS/testing_textures/Dark/texture_08.png" id="1_8aall"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xopr"]
+albedo_texture = ExtResource("1_8aall")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lrncs"]
+material = SubResource("StandardMaterial3D_2xopr")
+
+[node name="5x5x1" type="CSGMesh3D"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 7
+mesh = SubResource("BoxMesh_lrncs")

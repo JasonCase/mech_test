@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci82s73188hdy"]
+
+[ext_resource type="Texture2D" uid="uid://cgvmisgwmubi1" path="res://ASSETS/testing_textures/Purple/texture_10.png" id="1_dypqa"]
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://TOOLS/components/hit_reciever/hit_reciever.tscn" id="2_813fh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7yxk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ihxl"]
+albedo_color = Color(0.783523, 0.783523, 0.783523, 1)
+albedo_texture = ExtResource("1_dypqa")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_34jcy"]
+material = SubResource("StandardMaterial3D_3ihxl")
+
+[node name="rigid_1x1x1" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
+mass = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t7yxk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("BoxMesh_34jcy")
+
+[node name="HitReciever" parent="." instance=ExtResource("2_813fh")]

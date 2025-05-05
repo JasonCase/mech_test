@@ -1,0 +1,230 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4p3xyo42wd2e"]
+
+[ext_resource type="Script" uid="uid://dkbr35np5w0q" path="res://LEVELS/legacy/level_1.gd" id="1_gpyrb"]
+[ext_resource type="Shader" uid="uid://dcwdpsy6d7j2v" path="res://SHADERS/pixelize.gdshader" id="1_ytu74"]
+[ext_resource type="PackedScene" uid="uid://dnxpogqqd1qt" path="res://PREFABS/test_prefabs/blocks/static/10x10x1.tscn" id="2_4i6m5"]
+[ext_resource type="PackedScene" uid="uid://cnko7ua7v6nne" path="res://PLAYER/player.tscn" id="3_dmvmh"]
+[ext_resource type="PackedScene" uid="uid://dtueygcbgysdf" path="res://PREFABS/legacy/LightBlock.tscn" id="4_4i6m5"]
+[ext_resource type="PackedScene" uid="uid://cxxg6iik8i826" path="res://PREFABS/test_prefabs/blocks/static/5x5x1.tscn" id="4_p743n"]
+[ext_resource type="PackedScene" uid="uid://b5trvmen33du0" path="res://PREFABS/test_prefabs/blocks/static/2x1x1.tscn" id="5_ix8ia"]
+[ext_resource type="PackedScene" uid="uid://bon8fa1r3d25c" path="res://PREFABS/test_prefabs/blocks/rigid/rigid_2x_1x_1.tscn" id="7_jmi6b"]
+[ext_resource type="PackedScene" uid="uid://ci82s73188hdy" path="res://PREFABS/test_prefabs/blocks/rigid/rigid_1x1x1.tscn" id="8_m6iiw"]
+[ext_resource type="PackedScene" uid="uid://bpk7yk1iivwer" path="res://WEAPONS/M4.tscn" id="9_m6iiw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p743n"]
+shader = ExtResource("1_ytu74")
+shader_parameter/pres = Vector2(320, 240)
+
+[sub_resource type="Sky" id="Sky_ytu74"]
+
+[sub_resource type="Environment" id="Environment_ix8ia"]
+background_mode = 1
+background_color = Color(0.0392157, 0.00392157, 0.0666667, 1)
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_ytu74")
+ambient_light_source = 2
+ambient_light_color = Color(0.408329, 0.408329, 0.408329, 1)
+ambient_light_energy = 0.17
+fog_mode = 1
+fog_density = 1.0
+fog_sky_affect = 0.068
+fog_depth_curve = 0.840897
+
+[node name="shooting_range" type="Node3D"]
+script = ExtResource("1_gpyrb")
+
+[node name="Player" parent="." instance=ExtResource("3_dmvmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0156774, 0.5, 0.108025)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Pixelize" type="CanvasLayer" parent="Environment"]
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Pixelize"]
+material = SubResource("ShaderMaterial_p743n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_ix8ia")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -0.48786, 0.872922, 0, -0.872922, -0.48786, 0, 10, 0)
+light_color = Color(0.51106, 0.377873, 0.318768, 1)
+light_energy = 0.391
+shadow_enabled = true
+
+[node name="Structures" type="Node3D" parent="."]
+
+[node name="10x10x1" parent="Structures" instance=ExtResource("2_4i6m5")]
+
+[node name="10x10x3" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -10, 0, 0)
+
+[node name="10x10x2" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, 0)
+
+[node name="10x10x4" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 10)
+
+[node name="10x10x5" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -10, 0, 10)
+
+[node name="10x10x6" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, 10)
+
+[node name="10x10x7" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, -10)
+
+[node name="10x10x8" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -10, 0, -10)
+
+[node name="10x10x10" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, -15.5, 5.5, 0)
+
+[node name="10x10x11" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, -15.5, 5.5, 10)
+
+[node name="10x10x12" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, -15.5, 5.5, -10)
+
+[node name="10x10x13" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, 15.5, 5.5, 0)
+
+[node name="10x10x14" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, 15.5, 5.5, 10)
+
+[node name="10x10x16" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 20)
+
+[node name="10x10x17" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -10, 0, 20)
+
+[node name="10x10x18" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, 20)
+
+[node name="10x10x19" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, -15.5, 5.5, 20)
+
+[node name="10x10x20" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, 15.5, 5.5, 20)
+
+[node name="10x10x21" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(-2.08432e-14, 4.37114e-08, -10, 10, -4.47035e-08, 0, 4.76837e-07, -1, -4.37114e-07, 10, 5.5, 25.3)
+
+[node name="10x10x22" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(-2.08432e-14, 4.37114e-08, -10, 10, -4.47035e-08, 0, 4.76837e-07, -1, -4.37114e-07, -1.93715e-07, 5.5, 25.3)
+
+[node name="10x10x23" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(-2.08432e-14, 4.37114e-08, -10, 10, -4.47035e-08, 0, 4.76837e-07, -1, -4.37114e-07, -10, 5.5, 25.3)
+
+[node name="10x10x15" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(4.76837e-07, -1, 0, 10, -4.47035e-08, 0, 0, 0, 10, 15.5, 5.5, -10)
+
+[node name="10x10x9" parent="Structures" instance=ExtResource("2_4i6m5")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 10, 0, -10)
+
+[node name="5x5x2" parent="Structures" instance=ExtResource("4_p743n")]
+transform = Transform3D(5, 0, 0, 0, 0.766044, 3.21394, 0, -0.642788, 3.83022, -5, 1.65659, 23.2)
+
+[node name="5x5x3" parent="Structures" instance=ExtResource("4_p743n")]
+transform = Transform3D(5, 0, 0, 0, 0.766044, 3.21394, 0, -0.642788, 3.83022, 5, 1.65659, 23.2)
+
+[node name="5x5x4" parent="Structures" instance=ExtResource("4_p743n")]
+transform = Transform3D(5, 0, 0, 0, 0.642788, 5.74533, 0, -0.766044, 4.82091, 0, 3.05659, 22.8)
+
+[node name="2x1x1" parent="Structures" instance=ExtResource("5_ix8ia")]
+transform = Transform3D(-8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0, 1, -11, 1.5, 22)
+
+[node name="2x1x2" parent="Structures" instance=ExtResource("5_ix8ia")]
+transform = Transform3D(-8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0, 1, -11, 2.5, 19)
+
+[node name="2x1x3" parent="Structures" instance=ExtResource("5_ix8ia")]
+transform = Transform3D(-8.74228e-08, 1, 0, -2, -4.37114e-08, 0, 0, 0, 1, -11, 3.5, 16)
+
+[node name="Obstacles" type="Node3D" parent="."]
+
+[node name="rigid_2x1x1" parent="Obstacles" instance=ExtResource("7_jmi6b")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10, 1.5, 11)
+
+[node name="rigid_2x1x2" parent="Obstacles" instance=ExtResource("7_jmi6b")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 10, 1.5, 10)
+
+[node name="rigid_2x1x3" parent="Obstacles" instance=ExtResource("7_jmi6b")]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 10, 1.5, 15)
+
+[node name="rigid_1x1x1" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 10, 3, 15)
+
+[node name="rigid_2x1x4" parent="Obstacles" instance=ExtResource("7_jmi6b")]
+transform = Transform3D(-3.09086e-08, -0.707107, -0.707107, 1, -4.37114e-08, 0, -3.09086e-08, -0.707107, 0.707107, 10, 1.5, 19)
+
+[node name="rigid_1x1x2" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, 19)
+
+[node name="rigid_1x1x3" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 17)
+
+[node name="rigid_1x1x4" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 17)
+
+[node name="rigid_1x1x5" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 2, 17)
+
+[node name="rigid_1x1x6" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 7.01704, 1, 12.8706)
+
+[node name="rigid_1x1x7" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 7.98296, 1, 13.1294)
+
+[node name="rigid_1x1x8" parent="Obstacles" instance=ExtResource("8_m6iiw")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 7.5, 2, 13)
+
+[node name="Targets" type="Node3D" parent="."]
+
+[node name="Weapons" type="Node3D" parent="."]
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="LightBlock" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 14.9, 6, 10)
+
+[node name="LightBlock2" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 14.9, 6, 0)
+
+[node name="LightBlock3" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 14.9, 6, -10)
+
+[node name="LightBlock4" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, -0.707107, 0.707107, 0, -6.18172e-08, -6.18172e-08, -1, -15.1, 6, -10)
+
+[node name="LightBlock5" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, -0.707107, 0.707107, 0, -6.18172e-08, -6.18172e-08, -1, -15.1, 6, 0)
+
+[node name="LightBlock6" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, -0.707107, 0.707107, 0, -6.18172e-08, -6.18172e-08, -1, -15.1, 6, 10)
+
+[node name="LightBlock7" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 14.9, 6, 20)
+
+[node name="LightBlock9" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, 10, 6, 24.7)
+
+[node name="LightBlock10" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.5, 0.866025, -1.13133e-08, 0.866025, 0.5, -4.2222e-08, -1.93715e-07, 9, 24.7)
+
+[node name="LightBlock11" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, -10, 6, 24.7)
+
+[node name="LightBlock8" parent="Lights" instance=ExtResource("4_4i6m5")]
+transform = Transform3D(-0.707107, -0.707107, 8.74228e-08, -0.707107, 0.707107, 0, -6.18172e-08, -6.18172e-08, -1, -15.1, 6, 20)
+
+[node name="M4" parent="." instance=ExtResource("9_m6iiw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 1.5, 4)
+
+[connection signal="fired" from="Player" to="." method="_on_player_fired"]
