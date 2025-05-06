@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://8mp1j1ejq0js"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arieo"]
+size = Vector3(2, 1, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bq82c"]
+load_path = "res://.godot/imported/texture_08.png-f404b6f04dfefdc41134cd80a34c1b37.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bq82c"]
+albedo_texture = SubResource("CompressedTexture2D_bq82c")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bq82c"]
+material = SubResource("StandardMaterial3D_bq82c")
+
+[node name="2x1" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_arieo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_bq82c")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://8e03rb06co7"]
+[gd_scene load_steps=7 format=3 uid="uid://8e03rb06co7"]
 
 [ext_resource type="PackedScene" uid="uid://b5rtw8khdcfsf" path="res://PROJECTILES/projectile/projectile.tscn" id="1_fj03e"]
 [ext_resource type="Script" uid="uid://cet8hlag77jdm" path="res://PROJECTILES/rocket/rocket.gd" id="2_5gt1y"]
 [ext_resource type="PackedScene" uid="uid://cdhdlp2l7e3us" path="res://TOOLS/emitters/explosion/explosion.tscn" id="3_nifdj"]
+[ext_resource type="PackedScene" uid="uid://bx412o4xhqieb" path="res://TOOLS/emitters/smoke_trail.tscn" id="4_vecm6"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5gt1y"]
 
@@ -11,6 +12,7 @@
 [node name="Rocket" instance=ExtResource("1_fj03e")]
 script = ExtResource("2_5gt1y")
 explosion_scene = ExtResource("3_nifdj")
+trail_scene = ExtResource("4_vecm6")
 turn_speed = 5.0
 spd = 50
 spawns_decal = false
@@ -31,5 +33,8 @@ mesh = SubResource("CapsuleMesh_r2l15")
 [node name="Warhead" type="Marker3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.39311)
 
-[node name="Camera3D" type="Camera3D" parent="." index="5"]
+[node name="Exhaust" type="Marker3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.302394)
+
+[node name="Camera3D" type="Camera3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.125343)

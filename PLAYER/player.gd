@@ -15,7 +15,7 @@ const JUMP_VELOCITY: float = 4.5
 
 var SPEED: float = 4.0
 var sens: float = 0.004
-var xrot: float = 0.0
+var xrot: float = 180
 var yrot: float = 0.0
 var max_angle: float = 70.0
 

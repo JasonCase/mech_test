@@ -15,11 +15,7 @@ func spawn_decal(surface: Object, col_p: Vector3, col_n: Vector3) -> void:
 	surface.add_child(bh)
 	bh.global_transform.origin = col_p
 	bh.look_at(col_p+col_n+Vector3(0.001,0.001,0.001),Vector3.UP)
-	var parent_basis = surface.global_transform.basis
-	var scale_x = parent_basis.x.length()
-	var scale_y = parent_basis.y.length()
-	var scale_z = parent_basis.z.length()
-	bh.scale = Vector3(1.0 / scale_x, 1.0 / scale_y, 1.0 / scale_z)
+	
 	
 	
 func hit() -> void:

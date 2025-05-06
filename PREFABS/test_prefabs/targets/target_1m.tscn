@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmhwgyxdjgxq5"]
+
+[ext_resource type="Script" uid="uid://dupao0yahd7ma" path="res://PREFABS/test_prefabs/targets/target.gd" id="1_skhk6"]
+[ext_resource type="PackedScene" uid="uid://s2draaqyfxll" path="res://TOOLS/components/hit_reciever/hit_reciever.tscn" id="2_1aupw"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t276x"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bj6qr"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qth2"]
+albedo_color = Color(0.682353, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ay4c3"]
+material = SubResource("StandardMaterial3D_4qth2")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.15
+
+[node name="Target_1m" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_skhk6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_t276x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CylinderMesh_bj6qr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CylinderMesh_ay4c3")
+
+[node name="HitReciever" parent="." instance=ExtResource("2_1aupw")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

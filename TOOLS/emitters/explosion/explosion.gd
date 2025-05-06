@@ -1,9 +1,12 @@
 class_name Explosion extends Node3D
 
-@export var debug_scene = preload("res://TOOLS/debug/debug_marker/debug_marker.tscn")
+@export var debug_scene: PackedScene = preload("res://TOOLS/debug/debug_marker/debug_marker.tscn")
+@export var particle_scene: PackedScene = preload("res://TOOLS/emitters/explosion_emitter.tscn")
+
 @export var explosion_radius: float = 10
 @export var force: float = 1
 @export var ray_count: int = 2500
+@export var debug: bool = false
 
 func generate_coordinates(count: int) -> Array:
 	var coordinates: Array = []
@@ -67,8 +70,13 @@ func generate_impulse(collisions: Array) -> void:
 func generate_explosion() -> void:
 	var coords: Array = generate_coordinates(ray_count)
 	var collisions: Array = process_rays(coords)
+	var particles: Node3D = particle_scene.instantiate()
+	get_tree().current_scene.add_child(particles)
+	particles.global_position = global_position
+	particles.generate_explosion()
 	generate_impulse(collisions)
-	draw_debug(collisions)
+	if debug == true:
+		draw_debug(collisions)
 	queue_free()
 
 	

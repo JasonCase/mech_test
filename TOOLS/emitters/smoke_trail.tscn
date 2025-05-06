@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bx412o4xhqieb"]
+
+[ext_resource type="Script" uid="uid://dlucjroqobpwk" path="res://TOOLS/emitters/smoke_trail.gd" id="1_eyl4a"]
+
+[sub_resource type="Curve" id="Curve_ucoe2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.348993, 1), 0.0881135, 0.0881135, 0, 0, Vector2(1, 0), 0.101464, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_eyl4a"]
+curve = SubResource("Curve_ucoe2")
+
+[sub_resource type="Gradient" id="Gradient_h0gn3"]
+offsets = PackedFloat32Array(0, 0.756098)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2ll61"]
+gradient = SubResource("Gradient_h0gn3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ucoe2"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(1, 1, 23)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 0, 1)
+spread = 38.933
+initial_velocity_max = 1.0
+angular_velocity_min = 0.999984
+angular_velocity_max = 0.999984
+gravity = Vector3(0, -0.01, 0)
+damping_max = 0.01
+scale_min = 0.1
+scale_max = 0.4
+color = Color(0.670588, 0.670588, 0.670588, 1)
+color_ramp = SubResource("GradientTexture1D_2ll61")
+alpha_curve = SubResource("CurveTexture_eyl4a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucoe2"]
+vertex_color_use_as_albedo = true
+distance_fade_mode = 1
+distance_fade_min_distance = 150.0
+distance_fade_max_distance = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ucoe2"]
+material = SubResource("StandardMaterial3D_ucoe2")
+
+[node name="Trail" type="Node3D"]
+script = ExtResource("1_eyl4a")
+
+[node name="TrailEmitter" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+emitting = false
+amount = 50
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 20
+visibility_aabb = AABB(-8, -8, -8, 16, 16, 16)
+process_material = SubResource("ParticleProcessMaterial_ucoe2")
+draw_pass_1 = SubResource("BoxMesh_ucoe2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

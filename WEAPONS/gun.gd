@@ -4,6 +4,7 @@ class_name Gun extends RigidBody3D
 @onready var muzzle = $MeshInstance3D/Muzzle
 @onready var oscale = $MeshInstance3D.scale
 @onready var smod = oscale * Vector3(1.2,1.2,1.2)
+@onready var flash: Node3D =  get_node_or_null("MeshInstance3D/MuzzleFlash")
 
 @export var DMG: int = 5
 @export var RATE: float = 180
@@ -42,7 +43,10 @@ func looking():
 func shoot() -> void:
 	if shooting_cooldown > 0 or !trigger_held: return
 	var projectile: Projectile = projectile_scene.instantiate()
-	var b_scale = projectile.scale
+	var b_scale: Vector3 = projectile.scale
+	
+	if flash:
+		flash.flash()
 	shooting = true
 	projectile.transform = muzzle.global_transform
 	projectile.scale = b_scale
@@ -61,6 +65,9 @@ func _process(delta: float) -> void:
 		shoot()
 	else:
 		trigger_held = false
+		if flash:
+			flash.reset()
+		
 	
 	if shooting_cooldown > 0:
 		shooting_cooldown -= delta

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl7j7cm84or4b"]
+
+[ext_resource type="Script" uid="uid://8af0wxbdqvk2" path="res://TOOLS/emitters/target_emitter.gd" id="1_t52qm"]
+
+[node name="Emitter" type="Node3D"]
+script = ExtResource("1_t52qm")
+frequency = 2.0
+
+[node name="Marker3D" type="Marker3D" parent="."]
+gizmo_extents = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

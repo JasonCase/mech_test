@@ -1,6 +1,7 @@
 extends Projectile
 
 @export var explosion_scene: PackedScene = preload("res://TOOLS/emitters/explosion/explosion.tscn")
+@export var trail_scene: PackedScene = preload("res://TOOLS/emitters/smoke_trail.tscn")
 
 var target: Marker3D
 @export var turn_speed: float = 1
@@ -36,6 +37,11 @@ func set_fired_from(from: Node3D):
 
 func _process(delta: float) -> void:
 	#$Camera3D.current = true
+	var trail: Node3D = trail_scene.instantiate()
+	get_tree().current_scene.add_child(trail)
+	trail.global_position = $Exhaust.global_position
+	trail.look_at(trail.global_position + transform.basis.z,Vector3.UP)
+	trail.get_node("TrailEmitter").emitting = true
 	update_projectile(delta)
 	
 	
