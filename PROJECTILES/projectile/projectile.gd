@@ -23,6 +23,9 @@ func hit() -> void:
 	var col_n: Vector3 = ray.get_collision_normal()
 	var hit_object: Object = ray.get_collider()
 	
+	if col_p == Vector3.ZERO:
+		col_p = global_position
+	
 	position = col_p
 	if hit_object:
 		var HitReciever: Node3D = hit_object.get_node_or_null("HitReciever")

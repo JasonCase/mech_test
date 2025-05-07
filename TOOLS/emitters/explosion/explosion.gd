@@ -77,6 +77,8 @@ func generate_explosion() -> void:
 	generate_impulse(collisions)
 	if debug == true:
 		draw_debug(collisions)
+	$AudioStreamPlayer3D.reparent(get_tree().current_scene)
 	queue_free()
+	
 
 	
