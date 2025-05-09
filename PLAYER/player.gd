@@ -7,7 +7,7 @@ class_name Player extends CharacterBody3D
 @onready var RHand: SkeletonIK3D = $CharacterArmature/Skeleton3D/RHand
 @onready var ray: RayCast3D = $CharacterArmature/Skeleton3D/BoneAttachment3D2/RayCast3D
 
-@onready var camera: Camera3D = $SpringArm3D/Camera3D
+@onready var camera: Camera3D = $Camera3D
 
 signal fired(projectile: Projectile)
 
@@ -136,7 +136,7 @@ func handle_input(event: InputEvent) -> void:
 			$AnimationTree.set("parameters/Blend2 3/blend_amount",1)
 
 		elif event.is_action_released("Right_Click"):
-			$SpringArm3D.spring_length = 2
+			$SpringArm3D.spring_length = 1.5
 			$AnimationTree.set("parameters/Blend2 3/blend_amount",0)
 
 
@@ -168,7 +168,8 @@ func _process(_delta: float) -> void:
 	rotation.y = xrot
 	($SpringArm3D as SpringArm3D).rotation.x = yrot
 	($TorsoPivot as Node3D).rotation.x = -yrot
-	
+	$Camera3D.global_position = $SpringArm3D/SpringMount.global_position
+	$Camera3D.global_rotation = $SpringArm3D/SpringMount.global_rotation	
 
 func _physics_process(delta: float) -> void:
 	hand_IK(delta)

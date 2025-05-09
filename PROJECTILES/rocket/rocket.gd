@@ -14,7 +14,7 @@ var rot: Vector3 = Vector3()
 var straight: Vector3
 
 func calculate_ray_target(delta: float) -> void:
-	var ray_length: float = spd * delta * 10
+	var ray_length: float = spd * delta * 1
 	if target and laser.enabled :
 		var target_direction: Vector3 = (target.global_position - global_position).normalized()
 		var current_direction: Vector3 = -transform.basis.z.normalized()

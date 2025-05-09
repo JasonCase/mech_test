@@ -90,3 +90,7 @@ Drop={
 [layer_names]
 
 3d_physics/layer_2="world"
+
+[physics]
+
+3d/physics_engine="GodotPhysics3D"
